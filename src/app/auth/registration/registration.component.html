@@ -1,0 +1,82 @@
+<body class="register" style="height:100vh !important;">
+
+    <form [formGroup]="fgUserRegistartion" class="form-register">
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+                <img alt="logo" src="assets/img/logo-3.png" class="theme-logo">
+            </div>
+
+            <div class="col-md-12">
+
+                <label for="username" class="sr-only">Username</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="icon-username"><i class="flaticon-user-7"></i> </span>
+                    </div>
+                    <input type="text" formControlName="UserName" class="form-control" placeholder="Username"
+                        aria-describedby="username" required>
+                </div>
+                <label class="error"
+                    *ngIf="this.fgUserRegistartion.get('UserName').value=='' && !this.fgUserRegistartion.get('UserName').pristine ">
+                    Enter User Name
+                </label>
+
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="icon-inputEmail"><i class="flaticon-email-fill-2"></i>
+                        </span>
+                    </div>
+                    <input type="email" formControlName="Email" class="form-control" placeholder="Email Address"
+                        aria-describedby="inputEmail" required>
+                </div>
+                <label class="error"
+                    *ngIf="this.fgUserRegistartion.get('Email').value=='' && !this.fgUserRegistartion.get('Email').pristine ">
+                    Enter Email
+                </label>
+
+                <label for="inputPassword" class="sr-only">Password</label>
+
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="icon-inputPassword"><i class="flaticon-key-2"></i> </span>
+                    </div>
+                    <input type="password" formControlName="Password" class="form-control" placeholder="Password"
+                        aria-describedby="inputPassword" required>
+                </div>
+                <label class="error"
+                    *ngIf="this.fgUserRegistartion.get('Password').value=='' && !this.fgUserRegistartion.get('Password').pristine ">
+                    Enter Password
+                </label>
+
+                <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="icon-inputPassword"><i class="flaticon-key-2"></i> </span>
+                    </div>
+                    <input type="password" formControlName="ConfirmPassword" class="form-control" placeholder="Password"
+                        aria-describedby="inputPassword" required>
+                </div>
+
+                <div class="checkbox d-flex justify-content-center mt-3">
+                    <div class="custom-control custom-checkbox mr-3">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" value="remember-me">
+                        <label class="custom-control-label" for="customCheck1">Remember me</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-lg btn-gradient-warning btn-block btn-rounded mb-4 mt-5" type="submit"
+                    (click)="UserRegistartion()" [disabled]="!this.fgUserRegistartion.valid">Register</button>
+                <div class="forgot-pass text-center">
+                    <a href="user_pass_recovery_2.html">Forgot Password ?</a>
+                </div>
+                <div class="forgot-pass text-center">
+                    <a href="user_pass_recovery_2.html" routerLink="/auth/login">Already Register ?sign in</a>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</body>

@@ -1,0 +1,416 @@
+<style>
+    .error {
+        margin-top: 10px;
+        margin-bottom: 0 !important;
+        color: red;
+    }
+
+    .justify-content-start {
+        justify-content: flex-end !important;
+    }
+
+    .modal-div-margin {
+        margin-top: 15px !important;
+    }
+</style>
+
+<div class="row" style="margin-top:30px;">
+    <div class="col-lg-12 col-md-12 col-sm-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4>Banking</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content widget-content-area">
+
+                <form [formGroup]="fgcreditdebit">
+
+                    <div class="row">
+
+                        <div class="col-sm-6 mb-4" *ngIf="!IsReturnAmount">
+                            <label>Select Person*</label>
+                            <div class="input-group" *ngIf="persons">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-user-11"></i>
+                                    </span>
+                                </div>
+                                <ng-select #person class="form-control basic" [searchable]="true"
+                                    formControlName="PersonId">
+                                    <ng-option selected value="">Select Person</ng-option>
+                                    <ng-option *ngFor="let per of persons" [value]="per.PersonId">
+                                        {{per.Name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('PersonId').value=='' && !this.fgcreditdebit.get('PersonId').pristine ">
+                                Select Person
+                            </label>
+                        </div>
+
+                        <div class="col-sm-6 mb-4" *ngIf="IsReturnAmount">
+                            <label>Select Person*</label>
+                            <div class="input-group" *ngIf="persons">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-user-11"></i>
+                                    </span>
+                                </div>
+                                <ng-select [searchable]="true" #person class="form-control basic"
+                                    formControlName="PersonId">
+                                    <ng-option selected value="">Select Person</ng-option>
+                                    <ng-option *ngFor="let per of persons" [value]="per.PersonId">
+                                        {{per.Name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('PersonId').value=='' && !this.fgcreditdebit.get('PersonId').pristine ">
+                                Select Person
+                            </label>
+                        </div>
+
+                        <div class="col-sm-6 mb-4" *ngIf="!IsReturnAmount">
+                            <label>Select Income Type*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-bitcoin-circle"></i>
+                                    </span>
+                                </div>
+                                <ng-select class="form-control basic" formControlName="IncomeTypeId">
+                                    <ng-option selected value="">Select IncomeType</ng-option>
+                                    <ng-option *ngFor="let incomety of incometype" [value]="incomety.UserIncomeTypeId">
+                                        {{incomety.IncomeName}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('IncomeTypeId').value=='' && !this.fgcreditdebit.get('IncomeTypeId').pristine ">
+                                Enter Income Type
+                            </label>
+                        </div>
+
+                        <div class="col-sm-6 mb-4">
+                            <label>Select Date*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-calendar-2"></i>
+                                    </span>
+                                </div>
+                                <input type="date" formControlName="DOT" aria-describedby="basic-addon1"
+                                    class="form-control">
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('DOT').value=='' && !this.fgcreditdebit.get('DOT').pristine ">
+                                Select Date
+                            </label>
+                        </div>
+
+                        <div class="col-sm-6 mb-4">
+                            <label>Amount*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-dollar-coin"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="Amount"
+                                    aria-describedby="basic-addon1" />
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('Amount').value=='' && !this.fgcreditdebit.get('Amount').pristine ">
+                                Enter IFSC Number
+                            </label>
+                        </div>
+
+                        <div class="col-sm-6 mb-4">
+                            <label>Payment Type*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-dollar-coin"></i>
+                                    </span>
+                                </div>
+                                <ng-select [(ngModel)]="SelectedPaymentMethod" class="form-control basic"
+                                    [searchable]="true" formControlName="PaymentMethod">
+                                    <ng-option value="Cash" selected="selected">Cash</ng-option>
+                                    <ng-option value="Phone Pay">Phone Pay</ng-option>
+                                    <ng-option value="Google Pay">Google Pay</ng-option>
+                                    <ng-option>Paytem</ng-option>
+                                </ng-select>
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('PaymentMethod').value=='' && !this.fgcreditdebit.get('PaymentMethod').pristine ">
+                                Enter Amount
+                            </label>
+                        </div>
+                        <div class="col-sm-6 mb-4">
+                            <label>Select Bank*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-home-line"></i>
+                                    </span>
+                                </div>
+                                <ng-select class="form-control basic" [searchable]="true" formControlName="BankId">
+                                    <ng-option selected value="">Select Bank</ng-option>
+                                    <ng-option *ngFor="let bank of banks" [value]="bank.BankId">
+                                        {{bank.BankName}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('BankId').value=='' && !this.fgcreditdebit.get('BankId').pristine ">
+                                Select Bank
+                            </label>
+                        </div>
+                        <div class="col-sm-6 mb-4">
+                            <label>Description*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="flaticon-menu-line-3"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="exampleFormControlTextarea1"
+                                    formControlName="Description" />
+                            </div>
+                            <label class="error"
+                                *ngIf="this.fgcreditdebit.get('Description').value=='' && !this.fgcreditdebit.get('Description').pristine ">
+                                Enter Description
+                            </label>
+                        </div>
+
+                        <div *ngIf="!IsReturnAmount" class="col-sm-2 mb-4">
+                            <label>Credit*</label>
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-classic-primary">
+                                    <input type="radio" class="new-control-input" value="Credit"
+                                        formControlName="Transaction" (change)="checkreturn('Credit')">
+                                    <span class="new-control-indicator"></span>Credit
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 mb-4">
+                            <label>Debit*</label>
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-classic-primary">
+                                    <input type="radio" class="new-control-input" value="Debit"
+                                        formControlName="Transaction" (change)="checkreturn('Debit')">
+                                    <span class="new-control-indicator"></span>Debit
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 mb-4" *ngIf="isreturn">
+                            <label>Is Returnable*</label>
+                            <div class="n-chk">
+                                <label class="new-control new-checkbox new-checkbox-classic checkbox-primary">
+                                    <input type="checkbox" formControlName="IsReturnable" class="new-control-input">
+                                    <span class="new-control-indicator"></span>Is Returnable
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 text-right">
+                            <!-- If operation to perform person return amount the this button is displayed -->
+                            <input type="submit" *ngIf="IsReturnAmount" (click)="SaveReturnAmount()" name="txt"
+                                class="mt-4 btn btn-button-7">
+                            <!-- If operation to perform credit debit then this button is displayed -->
+                            <input type="submit" *ngIf="!IsReturnAmount" (click)="SaveCreditDebit()" name="txt"
+                                class="mt-4 btn btn-button-7">
+                            <input type="button" value="Cancel" name="txt" class="mt-4 ml-2 btn btn-default">
+                        </div>
+                        <!-- [disabled]="!this.fgcreditdebit.valid" -->
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="margin-top:30px;">
+    <div class="col-lg-12 col-md-12 col-sm-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4>Banking</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content widget-content-area">
+
+                <div class="table-responsive">
+
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                        class="table table-hover table-striped table-bordered" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th class="align-center">Sr No</th>
+                                <th>DOT</th>
+                                <th>Payment Type</th>
+                                <th>Bank Account</th>
+                                <th>Amount</th>
+                                <th>Transction</th>
+                                <th>View</th>
+                                <!-- <th>Returnable</th>
+                                <th>Description</th> -->
+                                <th>Amt Return</th>
+                                <th class="align-center">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngIf="creditdebit.length==0">
+                                <td colspan="9"> <b>No Banks available.</b> </td>
+                            </tr>
+
+                            <tr *ngFor="let crdr of creditdebit;let i=index">
+                                <td class="align-center">{{(i+1)}}</td>
+                                <td>{{ crdr.DOT |  date}}</td>
+                                <td>{{ crdr.PaymentMethod }}</td>
+                                <td>{{ crdr.BankName }}</td>
+                                <td>{{ crdr.Amount }}</td>
+                                <td>{{ crdr.Transaction }}</td>
+
+                                <td style="text-align:center;">
+                                    <a href="javascript:void(0);" data-toggle="tooltip"
+                                        (click)="GetCreditDenitDetailsById(crdr.CreditDebitId)" data-placement="top"
+                                        title="" data-original-title="Edit" data-toggle="modal"
+                                        data-target="#basicModal"><i class="flaticon-view-3"></i></a>
+
+                                </td>
+                                <td style="text-align:center !important">
+                                    <div *ngIf="crdr.IsReturnable">
+                                        <input type="button"
+                                            style="color: #fff !important;background-color: #28a745; border-color: #28a745"
+                                            class="btn btn-success"
+                                            (click)="ReturnAmount(crdr.PersonId,crdr.CreditDebitId)" value="Return" />
+                                    </div>
+                                </td>
+                                <td class="align-center">
+                                    <ul class="table-controls">
+                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                title="" data-original-title="Edit"><i
+                                                    class="flaticon-edit-fill-2"></i></a></li>
+                                        <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                                                title="" data-original-title="Delete"
+                                                (click)="SetDeleteItemId(crdr.CreditDebitId)"><i
+                                                    class="flaticon-delete-fill"></i></a></li>
+                                    </ul>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <--model> -->
+
+<div class="widget-content advance-content signinModal-content">
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="basicModalLabel">Banking Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" *ngFor="let crdr of creditdebitbyid;let i=index">
+                        <div class="col-sm-12">
+                            <div class="row" *ngIf="crdr.Name !=null">
+
+                                <div class="col-sm-3"> <b>PersonName</b></div>
+                                <div class="col-sm-1"><b>:</b></div>
+                                <div class="col-sm-8">
+                                    {{crdr.Name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 modal-div-margin">
+                            <div class="row" *ngIf="crdr.IncomeName !=null">
+                                <div class="col-sm-3"><b>Income Type </b></div>
+                                <div class="col-sm-1"><b>:</b></div>
+                                <div class="col-sm-8">
+                                    {{crdr.IncomeName}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 modal-div-margin">
+                            <div class="row" *ngIf="crdr.ReturnableAmount !=null">
+                                <div class="col-sm-4"> <b>ReturnaAble Amount:</b></div>
+                                <div class="col-sm-1"><b>:</b></div>
+                                <div class="col-sm-7">
+                                    {{crdr.ReturnableAmount}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 modal-div-margin">
+                            <div class="row">
+
+                                <div class="col-sm-3"> <b>Description</b></div>
+                                <div class="col-sm-1"><b>:</b></div>
+                                <div class="col-sm-8">
+                                    {{crdr.Description}}
+                                </div>
+
+                                <!-- <div class="col-sm-3 modal-div-margin"> <b>Description:</b></div>
+                                <div class="col-sm-9 modal-div-margin">
+                                    {{crdr.Description}}
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="button" class="btn btn-dark btn-rounded mt-3 mb-3 ml-2"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm-12">
+    <div class="widget-content danger-alert">
+        <div id="exampleDangerAlert" #exampleDangerAlert class="modal fade show text-center" tabindex="-1" role="dialog"
+            aria-labelledby="exampleDangerAlertLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <i class="flaticon-circle-cross mt-5"></i>
+                        <h4 class="modal-title mt-4 mb-4" id="exampleDangerAlertLabel">
+                            Confirm: are you sure you want to delete this?</h4>
+                        <!-- <p class="mb-4">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, aliquip ex ea commodo.</p> -->
+                        <button type="button" class="btn btn-gradient-danger btn-rounded mt-3 mb-4" data-dismiss="modal"
+                            (click)="DeleteCreditDebit()">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="button" style="display:none;" id="btnModl" #exampleDangerAlert data-target="#exampleDangerAlert"
+            data-toggle="modal" />
+
+    </div>
+</div>

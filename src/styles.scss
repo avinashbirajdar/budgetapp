@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+
+
+ng-select{
+    padding: 0 !important;
+    margin: 0 !important;
+
+    .ng-select-container{
+        border-color: white !important;
+        &:hover{
+            box-shadow: none !important;
+        }
+        
+    }
+
+    ng-dropdown-panel{
+        margin-top : 1px !important;
+    }
+}
+
+.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container{
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.form-control {
+    height: 40px !important;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 10px 10px !important;
+}
+table.dataTable thead th, table.dataTable thead td {
+    padding: 13px 18px;
+    border-bottom: 1px solid #111111 !important;
+}
+
+label {   
+     color: #3b3f5c !important; 
+}

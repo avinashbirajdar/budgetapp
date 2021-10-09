@@ -1,0 +1,165 @@
+<style>
+  .error {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+    color: red;
+  }
+</style>
+
+<div class="row" style="margin-top:30px;">
+  <div class="col-lg-12 col-md-12 col-sm-12 layout-spacing">
+    <div class="statbox widget box box-shadow">
+      <div class="widget-header">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Add Category</h4>
+          </div>
+        </div>
+      </div>
+      <div class="widget-content widget-content-area">
+
+        <form [formGroup]="fgcategory">
+
+          <div class="row">
+
+            <div class="col-sm-6 mb-4">
+              <label>Category Name*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="flaticon-display"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control form-control-height " formControlName="CategoryName"
+                  aria-describedby="basic-addon1" />
+              </div>
+              <label class="error"
+                *ngIf="this.fgcategory.get('CategoryName').value=='' && !this.fgcategory.get('CategoryName').pristine ">
+                Enter Category Name
+              </label>
+            </div>
+
+            <div class="col-sm-6 mb-4">
+              <label>Select Category Icon</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="flaticon-picture"></i>
+                  </span>
+                </div>
+                <input type="file" #fileInput class="form-control form-control-height " formControlName="CategoryIcon"
+                  aria-describedby="basic-addon1" />
+              </div>
+              <label class="error"
+                *ngIf="this.fgcategory.get('CategoryIcon').value=='' && !this.fgcategory.get('CategoryIcon').pristine ">
+                Select Category Icon
+              </label>
+            </div>
+
+            <div class="col-sm-12 text-right">
+
+              <input type="submit" (click)="SaveCategory()" [disabled]="!this.fgcategory.valid" name="txt"
+                class="mt-4 btn btn-button-7">
+              <input type="button" value="Cancel" name="txt" class="mt-4 ml-2 btn btn-default">
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top:30px;">
+  <div class="col-lg-12 col-md-12 col-sm-12 layout-spacing">
+    <div class="statbox widget box box-shadow">
+      <div class="widget-header">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Category Details</h4>
+          </div>
+        </div>
+      </div>
+      <div class="widget-content widget-content-area">
+
+        <div class="table-responsive">
+
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-hover table-striped table-bordered" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="align-center">Sr No</th>
+                <th>Icon</th>
+                <th>category Name</th>
+                <th>Category Icon</th>
+
+                <th class="align-center">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngIf="category.length==0">
+                <td colspan="4"> <b>No Category available.</b> </td>
+              </tr>
+
+              <tr *ngFor="let cty of category;let i=index">
+                <td class="align-center">{{(i+1)}}</td>
+                <td class="align-center">
+                  <a href="{{cty.IconPath}}" target="_blank">
+                    <img alt="Icon" attr.src="{{cty.IconPath}}" style="width:50px;height: 50px;border-radius: 50%;" />
+                  </a>
+                </td>
+                <td>{{ cty.CategoryName}}</td>
+                <td>{{ cty.CategoryIcon }}</td>
+                <td class="align-center">
+                  <ul class="table-controls">
+                    <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="Edit"><i class="flaticon-edit-fill-2"></i></a></li>
+                    <li><a data-toggle="modal" data-placement="top" title="" data-original-title="Delete"
+                        style="cursor: pointer;" (click)="SetDeleteItemId(cty.CategoryId)"><i
+                          class="flaticon-delete-fill"></i></a>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-12">
+  <div class="widget-content danger-alert">
+    <div id="exampleDangerAlert" #exampleDangerAlert class="modal fade show text-center" tabindex="-1" role="dialog"
+      aria-labelledby="exampleDangerAlertLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="flaticon-circle-cross mt-5"></i>
+            <h4 class="modal-title mt-4 mb-4" id="exampleDangerAlertLabel">
+              Confirm: are you sure you want to delete this?</h4>
+            <!-- <p class="mb-4">Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit, aliquip ex ea commodo.</p> -->
+            <button type="button" class="btn btn-gradient-danger btn-rounded mt-3 mb-4" data-dismiss="modal"
+              (click)="DeleteUserCategory()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="button" style="display:none;" id="btnModl" #exampleDangerAlert data-target="#exampleDangerAlert"
+      data-toggle="modal" />
+
+  </div>
+</div>

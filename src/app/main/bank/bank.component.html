@@ -1,0 +1,212 @@
+<style>
+  .error {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+    color: red;
+  }
+</style>
+
+<div class="row" style="margin-top: 30px">
+  <div class="col-lg-12 col-md-12 col-sm-12 layout-spacing">
+    <div class="statbox widget box box-shadow">
+      <div class="widget-header">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Banks</h4>
+          </div>
+        </div>
+      </div>
+      <div class="widget-content widget-content-area">
+        <form [formGroup]="fgBank">
+          <div class="row">
+            <div class="col-sm-6 mb-4">
+              <label>Bank Name*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="flaticon-home-line"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" formControlName="BankName" aria-describedby="basic-addon1" />
+              </div>
+              <label class="error" *ngIf="
+                  this.fgBank.get('BankName').value == '' &&
+                  !this.fgBank.get('BankName').pristine
+                ">
+                Enter Bank Name
+              </label>
+            </div>
+
+            <div class="col-sm-6 mb-4">
+              <label>Branch Name*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="flaticon-home-line"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" formControlName="BranchName" aria-describedby="basic-addon1" />
+              </div>
+              <label class="error" *ngIf="
+                  this.fgBank.get('BranchName').value == '' &&
+                  !this.fgBank.get('BranchName').pristine
+                ">
+                Enter Branch Name
+              </label>
+            </div>
+
+            <div class="col-sm-6 mb-4">
+              <label>Account Number*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="flaticon-home-line"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" formControlName="AccountNumber"
+                  aria-describedby="basic-addon1" />
+              </div>
+              <label class="error" *ngIf="
+                  this.fgBank.get('AccountNumber').value == '' &&
+                  !this.fgBank.get('AccountNumber').pristine
+                ">
+                Enter Account Number
+              </label>
+            </div>
+
+            <div class="col-sm-6 mb-4">
+              <label>IFSC Code*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="flaticon-home-line"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" formControlName="IFSC" aria-describedby="basic-addon1" />
+              </div>
+              <label class="error" *ngIf="
+                  this.fgBank.get('IFSC').value == '' &&
+                  !this.fgBank.get('IFSC').pristine
+                ">
+                Enter IFSC Number
+              </label>
+            </div>
+
+            <div class="col-sm-6 mb-4">
+              <label>Current Amount*</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="flaticon-dollar-coin"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" formControlName="Amount" aria-describedby="basic-addon1" />
+              </div>
+              <label class="error" *ngIf="
+                  this.fgBank.get('Amount').value == '' &&
+                  !this.fgBank.get('Amount').pristine
+                ">
+                Enter Amount
+              </label>
+            </div>
+
+            <div class="col-sm-12 text-right">
+              <input type="submit" (click)="SaveBankDetails()" [disabled]="!this.fgBank.valid" name="txt"
+                class="mt-4 btn btn-button-7" />
+              <input type="button" value="Cancel" name="txt" class="mt-4 ml-2 btn btn-default" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 30px">
+  <div class="col-lg-12 col-md-12 col-sm-12 layout-spacing">
+    <div class="statbox widget box box-shadow">
+      <div class="widget-header">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Banks</h4>
+          </div>
+        </div>
+      </div>
+      <div class="widget-content widget-content-area">
+        <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-hover table-striped table-bordered" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="align-center">Sr No</th>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>Account Number</th>
+                <th>IFSC</th>
+                <th>Amount</th>
+                <th class="align-center">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="banks.length == 0">
+                <td colspan="7"><b>No Banks available.</b></td>
+              </tr>
+
+              <tr *ngFor="let bank of banks; let i = index">
+                <td class="align-center">{{ i + 1 }}</td>
+                <td>{{ bank.BankName +' '+ (bank.AccountNumber | slice:-4)}}</td>
+                <td>{{ bank.BranchName }}</td>
+                <td>{{ bank.AccountNumber }}</td>
+                <td>{{ bank.IFSC }}</td>
+                <td>{{ bank.Amount }}</td>
+                <td class="align-center">
+                  <ul class="table-controls">
+                    <li>
+                      <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="Edit"><i class="flaticon-edit-fill-2"></i></a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" style="cursor: pointer" data-toggle="tooltip" data-placement="top"
+                        title="" data-original-title="Delete" (click)="SetDeleteBankId(bank.BankId)"><i
+                          class="flaticon-delete-fill"></i></a>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-12">
+  <div class="widget-content danger-alert">
+    <div id="exampleDangerAlert" #exampleDangerAlert class="modal fade show text-center" tabindex="-1" role="dialog"
+      aria-labelledby="exampleDangerAlertLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="flaticon-circle-cross mt-5"></i>
+            <h4 class="modal-title mt-4 mb-4" id="exampleDangerAlertLabel">
+              Confirm: are you sure you want to delete this?
+            </h4>
+            <!-- <p class="mb-4">Lorem ipsum dolor sit amet, consectetur
+                          adipisicing elit, aliquip ex ea commodo.</p> -->
+            <button type="button" class="btn btn-gradient-danger btn-rounded mt-3 mb-4" data-dismiss="modal"
+              (click)="DeleteBankDetails()">
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="button" style="display: none" id="btnModl" #exampleDangerAlert data-target="#exampleDangerAlert"
+      data-toggle="modal" />
+  </div>
+</div>

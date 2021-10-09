@@ -1,0 +1,111 @@
+<div class="row" style="margin-top: 30px">
+
+
+    <div class="col-xl-12 col-lg-12 col-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header border-bottom border-default">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4>Icon Tabs</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content widget-content-area icon-tab">
+
+                <ul class="nav nav-tabs  mb-3 mt-3" id="iconTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="icon-home-tab" data-toggle="tab" href="#icon-home" role="tab"
+                            aria-controls="icon-home" aria-selected="true"><i class="flaticon-home-fill-1"></i>
+                            Income</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="icon-profile-tab" data-toggle="tab" href="#icon-profile" role="tab"
+                            aria-controls="icon-profile" aria-selected="false"><i class="flaticon-user-7"></i>
+                            Expense</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="icon-contact-tab" data-toggle="tab" href="#icon-contact" role="tab"
+                            aria-controls="icon-contact" aria-selected="false"><i class="flaticon-telephone"></i>
+                            Balance</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="iconTabContent-1">
+                    <div class="tab-pane fade show active" id="icon-home" role="tabpanel"
+                        aria-labelledby="icon-home-tab">
+                        <div class="row">
+                            <div class="col-sm-6 mb-4">
+                                <label>Select Month*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="flaticon-home-line"></i>
+                                        </span>
+                                    </div>
+
+                                    <ng-select class="form-control basic" [searchable]="true"
+                                        formControlName="FromBank">
+                                        <ng-option selected value="0">Select Month</ng-option>
+                                        <ng-option selected value="1">Jan </ng-option>
+                                        <ng-option selected value="2">Feb </ng-option>
+                                        <ng-option selected value="3">Mar </ng-option>
+                                        <ng-option selected value="4">Apr </ng-option>
+                                        <ng-option selected value="5">May </ng-option>
+                                        <ng-option selected value="6">Jun </ng-option>
+                                        <ng-option selected value="7">July </ng-option>
+                                    </ng-select>
+                                    <!-- <input type="text" class="form-control" formControlName="FromBank"
+                                        aria-describedby="basic-addon1" /> -->
+                                </div>
+                                <!-- <label class="error"
+                                    *ngIf="this.fgbanktobank.get('FromBank').value=='' && !this.fgbanktobank.get('FromBank').pristine ">
+                                    Select From Bank
+                                </label> -->
+                            </div>
+
+                            <div class="col-sm-6 mb-4">
+                                <label>Select Year*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <i class="flaticon-home-line"></i>
+                                        </span>
+                                    </div>
+                                    <ng-select class="form-control basic" [searchable]="true" formControlName="ToBank">
+                                        <ng-option selected value="">Select To Bank</ng-option>
+                                    </ng-select>
+                                </div>
+                                <!-- <label class="error"
+                                    *ngIf="this.fgbanktobank.get('ToBank').value=='' && !this.fgbanktobank.get('ToBank').pristine ">
+                                    Select To Bank
+                                </label> -->
+                            </div>
+                            <div class="col-sm-12 mb-6">
+                                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="icon-profile" role="tabpanel" aria-labelledby="icon-profile-tab">
+                        <div class="media mt-4 mb-3">
+                            <img class="mr-3" src="assets/img/90x90.jpg" alt="Generic placeholder image">
+                            <div class="media-body">
+                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
+                                sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                                condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="icon-contact" role="tabpanel" aria-labelledby="icon-contact-tab">
+                        <p class="dropcap  dc-outline-primary">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

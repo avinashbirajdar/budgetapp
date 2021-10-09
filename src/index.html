@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+  <title>
+    Default | Equation - Multipurpose Bootstrap Dashboard Template
+  </title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+  <!-- B EGIN GLOBAL MANDATORY STYLES -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css" />
+  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="/plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css"> -->
+  <link href="/assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
+  <!-- END GLOBAL MANDATORY STYLES -->
+  <link href="/assets/css/ui-kit/tabs-accordian/custom-tabs.css" rel="stylesheet" type="text/css" />
+
+  <!-- BEGIN PAGE LEVEL PLUGINS -->
+  <link href="/plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/modals/component.css" rel="stylesheet" type="text/css" />
+  <!-- END PAGE LEVEL PLUGINS -->
+
+  <!--  BEGIN CUSTOM STYLE FILE  -->
+  <link href="/assets/css/ui-kit/custom-modal.css" rel="stylesheet" type="text/css" />
+
+  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+  <link href="/assets/css/support-chat.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/maps/vector/jvector/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/charts/chartist/chartist.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/default-dashboard/style.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/structure.css" rel="stylesheet" type="text/css" />
+  
+  <!--  END CUSTOM STYLE FILE  -->
+  <link href="/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+
+  <!-- <link href="/plugins/select2/select2.min.css" rel="stylesheet" type="text/css"> -->
+  <link rel="stylesheet" type="text/css" href="/plugins/select2/select2.min.css">
+
+  <!-- BEGIN THEME GLOBAL STYLES -->
+  <link href="/assets/css/design-css/design.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.css" rel="stylesheet"
+    type="text/css">
+  <!-- BEGIN PAGE LEVEL STYLES -->
+  <link href="/plugins/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
+  <link href="plugins/dropzone/basic.min.css" rel="stylesheet" type="text/css" />
+  <!-- <link href="/assets/css/users/pass_recovery_2.css" rel="stylesheet" type="text/css" /> -->
+
+  <!-- <link rel="stylesheet" type="text/css" href="/plugins/dropify/dropify.min.css"> -->
+
+  <link href="/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    .row [class*="col-"] .widget .widget-header h4 {
+      color: #00d1c1;
+    }
+  </style>
+
+  <style>
+    .form-control {
+      border: 1px solid #ccc;
+      color: #888ea8;
+      font-size: 15px;
+      border-radius: 2px;
+    }
+
+    code {
+      color: #3862f5;
+    }
+
+    .form-control:disabled,
+    .form-control[readonly] {
+      background-color: #f1f3f9;
+      border-color: #f1f3f1;
+    }
+
+    .btn-primary.disabled,
+    .btn-primary:disabled {
+      background-color: #3862f5;
+      border-color: #3862f5;
+    }
+
+    label {
+      color: #3b3f5c;
+      margin-bottom: 14px;
+    }
+
+    .form-control::-webkit-input-placeholder {
+      color: #888ea8;
+      font-size: 15px;
+    }
+
+    .form-control::-ms-input-placeholder {
+      color: #888ea8;
+      font-size: 15px;
+    }
+
+    .form-control::-moz-placeholder {
+      color: #888ea8;
+      font-size: 15px;
+    }
+
+    .form-control:focus {
+      border-color: #f1f3f1;
+      border-left: solid 3px #3862f5;
+    }
+
+    .table thead {
+      border-top: 1px solid #f1f3f1 !important;
+      border-bottom: 1px solid #f1f3f1 !important;
+    }
+
+    .navbar .navbar-nav .nav-item form.form-inline input.search-form-control {
+      width: 100%;
+      font-size: 13px;
+      background-color: #e6e6e6;
+      padding-left: 35px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border: none;
+      -webkit-border-radius: 10em;
+      -moz-border-radius: 10em;
+      border-radius: 10em;
+      color: #4f5163 !important;
+    }
+  </style>
+
+  <script src="/assets/js/libs/jquery-3.1.1.min.js"></script>
+  <script src="/bootstrap/js/popper.min.js"></script>
+  <script src="/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/plugins/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="/plugins/blockui/jquery.blockUI.min.js"></script>
+  <script src="/assets/js/app.js"></script>
+
+</head>
+
+<body>
+  <app-root></app-root>
+
+  <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+  <script>
+
+    $(document).ready(function () {
+
+      App.init();
+
+      $('.DOT').daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "showWeekNumbers": true,
+        "autoApply": true,
+        "startDate": "07/30/2020",
+        "endDate": "07/29/2020"
+      }, function (start, end, label) {
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+      });
+    });
+  </script>
+
+
+
+  <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+  <script src="/plugins/charts/chartist/chartist.js"></script>
+  <script src="/plugins/maps/vector/jvector/jquery-jvectormap-2.0.3.min.js"></script>
+  <script src="/plugins/maps/vector/jvector/worldmap_script/jquery-jvectormap-world-mill-en.js"></script>
+  <script src="/plugins/calendar/pignose/moment.latest.min.js"></script>
+  <script src="/plugins/calendar/pignose/pignose.calendar.js"></script>
+  <script src="/plugins/progressbar/progressbar.min.js"></script>
+  <script src="/assets/js/default-dashboard/default-custom.js"></script>
+  <script src="/assets/js/support-chat.js"></script>
+  <!-- <script src="/plugins/dropify/dropify.min.js"></script> -->
+
+  <!-- BEGIN PAGE LEVEL SCRIPTS -->
+  <script src="/assets/js/design-js/design.js"></script>
+  <script src="/plugins/date_time_pickers/bootstrap_date_range_picker/daterangepicker.js"></script>
+
+  <script src="/assets/js/custom.js"></script>
+  <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+
+  <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+  <script src="/plugins/select2/select2.min.js"></script>
+  <script src="/plugins/select2/custom-select2.js"></script>
+  <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+
+  <!-- BEGIN PAGE LEVEL PLUGINS -->
+  <script src="/plugins/dropzone/dropzone.min.js"></script>
+  <script src="/plugins/dropzone/custom-dropzone.js"></script>
+  <link href="/plugins/dropzone/basic.min.css" rel="stylesheet" type="text/css" />
+  <link href="/plugins/file-upload/file-upload-with-preview.css" rel="stylesheet" type="text/css" />
+
+  <script src="/assets/js/users/calendar.js"></script>
+  <script src="/assets/js/users/custom-profile.js"></script>
+
+  <script src="/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+  <!-- <script>
+    setTimeout(function () {
+
+      $('.dropify').dropify({
+        messages: { 'default': 'Click to Upload or Drag n Drop', 'remove': '<i class="flaticon-close-fill"></i>', 'replace': 'Upload or Drag n Drop' }
+      });
+
+    }, 500);
+  </script> -->
+</body>
+
+</html>
